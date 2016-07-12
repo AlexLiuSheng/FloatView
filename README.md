@@ -8,6 +8,11 @@ floatview on windowmanager,and you can be easy to add call show by using it
   
   ![image](https://github.com/AlexLiuSheng/FloatView/blob/master/z3.gif)
   
+  导入:
+  
+             dependencies {
+             compile 'com.allenliu.floatview:app:1.0.0'
+            }
   由于将WindowManager封装到Floaview内部实现全站按钮，所以不能直接使用布局inflate，初始化Floatview:
   
              FloatView(Context context, int x, int y, View childView)
