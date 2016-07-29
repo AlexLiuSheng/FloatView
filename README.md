@@ -2,7 +2,8 @@
 floatview on windowmanager,and you can be easy to add call show by using it
 
  自定义floatview，无需申明悬浮框权限，利用WindowManager TYPE_TOAST实现全站浮动式按钮,重写touch事件实现任意拖动，将view加入windowmanager层，可以使用控件实现    类似来电秀的效果。
-
+  
+  最新MIUI使用TYPE_TOAST也会无效，所以MIUI系统中需要在manifest里面注册SYSTEM_ALERT_Winow权限,其他系统可以不用.
 
   ![image](https://github.com/AlexLiuSheng/FloatView/blob/master/z.gif)
   
