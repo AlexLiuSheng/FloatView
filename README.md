@@ -5,7 +5,7 @@ floatview on windowmanager,and you can be easy to add call show by using it
   
  ## MIUI使用TYPE_TOAST也会无效，所以MIUI系统中需要在manifest里面注册SYSTEM_ALERT_Winow权限,其他系统可以不用.
   
-  <img src=https://github.com/AlexLiuSheng/FloatView/blob/master/z.gif width=300/><img src=https://github.com/AlexLiuSheng/FloatView/blob/master/z3.gif width=300/>
+  <img src=https://github.com/AlexLiuSheng/FloatView/blob/master/floatview.gif width=300/><img src=https://github.com/AlexLiuSheng/FloatView/blob/master/z.gif width=300/><img src=https://github.com/AlexLiuSheng/FloatView/blob/master/z3.gif width=300/>
  
   
  ### 导入: 
