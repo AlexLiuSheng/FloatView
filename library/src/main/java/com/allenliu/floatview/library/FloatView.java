@@ -1,23 +1,14 @@
-package com.allenliu.floatview;
+package com.allenliu.floatview.library;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Build;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import org.json.JSONObject;
 
 
 public class FloatView extends LinearLayout {
@@ -29,7 +20,8 @@ public class FloatView extends LinearLayout {
     private float x;
     private float y;
     private IFloatViewClick listener;
-    private boolean isAllowTouch=true;
+    private boolean isAllowTouch = true;
+
     public FloatView(Context context, int x, int y, int layoutres) {
         super(context);
         View view = LayoutInflater.from(getContext()).inflate(layoutres, null);
@@ -59,7 +51,7 @@ public class FloatView extends LinearLayout {
         if (childView != null) {
             addView(childView);
         }
-     //   wm.addView(this, wmParams);
+        //   wm.addView(this, wmParams);
     }
 
     /**
@@ -80,38 +72,42 @@ public class FloatView extends LinearLayout {
 
     /**
      * 添加至窗口
+     *
      * @return
      */
-   public  boolean addToWindow(){
-       if (wm != null) {
-           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-               if (!isAttachedToWindow()) {
-                   wm.addView(this,wmParams);
-                   return true;
-               } else {
-                   return false;
-               }
-           } else {
-               try {
-                   if (getParent() == null) {
-                       wm.addView(this,wmParams);
-                   }
-                   return true;
-               } catch (Exception e) {
-                   return  false;
-               }
-           }
+    public boolean addToWindow() {
+        if (wm != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (!isAttachedToWindow()) {
+                    wm.addView(this, wmParams);
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                try {
+                    if (getParent() == null) {
+                        wm.addView(this, wmParams);
+                    }
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            }
 
 
-       } else {
-           return false;
-       }
-   }
-   public void setIsAllowTouch(boolean flag){
-       isAllowTouch=flag;
-   }
+        } else {
+            return false;
+        }
+    }
+
+    public void setIsAllowTouch(boolean flag) {
+        isAllowTouch = flag;
+    }
+
     /**
      * 从窗口移除
+     *
      * @return
      */
     public boolean removeFromWindow() {
@@ -130,7 +126,7 @@ public class FloatView extends LinearLayout {
                     }
                     return true;
                 } catch (Exception e) {
-                    return  false;
+                    return false;
                 }
             }
 
@@ -157,18 +153,20 @@ public class FloatView extends LinearLayout {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mTouchStartX = (int) event.getRawX() - this.getMeasuredWidth() / 2;
-                mTouchStartY = (int) event.getRawY() - this.getMeasuredHeight() / 2 - 25;
+                mTouchStartY = (int) event.getRawY() - this.getMeasuredHeight() / 2 ;
 
                 return true;
             case MotionEvent.ACTION_MOVE:
                 wmParams.x = (int) event.getRawX() - this.getMeasuredWidth() / 2;
                 // 减25为状态栏的高度
-                wmParams.y = (int) event.getRawY() - this.getMeasuredHeight() / 2 - 25;
+                wmParams.y = (int) event.getRawY() - this.getMeasuredHeight() / 2 ;
                 // 刷新
-                wm.updateViewLayout(this, wmParams);
+                if (Math.abs(wmParams.y - mTouchStartY) > 10 || Math.abs(wmParams.x - mTouchStartX) > 10) {
+                    wm.updateViewLayout(this, wmParams);
+                }
                 return true;
             case MotionEvent.ACTION_UP:
-                y = (int) event.getRawY() - this.getMeasuredHeight() / 2 - 25;
+                y = (int) event.getRawY() - this.getMeasuredHeight() / 2 ;
                 x = (int) event.getRawX() - this.getMeasuredWidth() / 2;
                 if (Math.abs(y - mTouchStartY) > 10 || Math.abs(x - mTouchStartX) > 10) {
                     wm.updateViewLayout(this, wmParams);

@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.allenliu.floatview.library.FloatView;
 
 /**
  * Created by Allen Liu on 2016/5/25.
@@ -18,7 +19,7 @@ import android.widget.TextView;
 public class CallShowReceiver extends BroadcastReceiver {
     private String TAG="CALLSHOWRECEIVER";
     private boolean viewIsShow=false;
-    private  FloatView floatView;
+    private FloatView floatView;
     private PhoneStateListener phoneStateListener;
     @Override
     public void onReceive(Context context, Intent intent) {
