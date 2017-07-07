@@ -19,26 +19,34 @@ floatview on windowmanager,and you can be easy to add call show by using it
              FloatView(Context context, int x, int y, int layoutres)
  ### 其他方法:
   
-`updateFloatViewPosition(int x, int y)//更新位置`
+```
+updateFloatViewPosition(int x, int y)//更新位置
 
-`setFloatViewClickListener(IFloatViewClick listener)`
+setFloatViewClickListener(IFloatViewClick listener)`
 
-`addToWindow()//加入窗口`
+addToWindow()//加入窗口
 
-`setIsAllowTouch(boolean flag)//是否允许拖动`
+setIsAllowTouch(boolean flag)//是否允许拖动
 
-`removeFromWindow()//移除窗口`
+removeFromWindow()//移除窗口
+```
 
 
   由于控件显示在windowmanager上，所以控件显示的生命周期需要自己手动管理,可以在Application或者基层Activity里控制显示和隐藏。
-  利用控件也可以显示在来电秀上，由于继承自linearlayout所以可以添加子view，可以初始化时将View或layout传入，也可以手动addview，在监听来电时加入此     view即可,有兴趣的朋友可以参考下源码
   
-           case TelephonyManager.CALL_STATE_RINGING:
+  ### 来电秀
+  利用控件也可以显示在来电秀上。
+  
+  由于继承自linearlayout所以可以添加子view，可以初始化时将View或layout传入，也可以手动addview，在监听来电时加入view即可,有兴趣的朋友可以  
+  参考下源码
+  
+          case TelephonyManager.CALL_STATE_RINGING:
            if (!viewIsShow) {
           viewIsShow = true;
           if (floatView == null)
           floatView = new FloatView(context, 0, 0, R.layout.callshow_layout);
-          floatView.addToWindow();}
+          floatView.addToWindow();
+          }
    
 
 
